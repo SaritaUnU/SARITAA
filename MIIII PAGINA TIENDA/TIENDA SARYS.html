@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda SARYS</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+            justify-content: space-between;
+        }
+        .product {
+            background-color: #F4F4F4;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: calc(25% - 20px);
+            margin: 10px 0; 
+        }
+        .img-container {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .product img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .product button {
+            background-color: #666;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .product button:hover {
+            background-color: darkmagenta;
+        }
+        #cart {
+            padding: 20px;
+        }
+       
+        @media (max-width: 1200px) {
+            .product {
+                width: calc(33.33% - 20px); 
+            }
+        }
+        @media (max-width: 768px) {
+            .product {
+                width: calc(50% - 10px); 
+            }
+        }
+        @media (max-width: 480px) {
+            .product {
+                width: calc(100% - 20px); 
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <div id="titulo">
+            <center>
+                <h1>TIENDA SARYS</h1>
+            </center>
+        </div>
+    </div>
+
+    <div style="background-color:#CCC
+    ; height: 100px; display: flex; justify-content: center; align-items: center;"><img src="../Downloads/Square Framed Sunglasses Silhouette PNG & SVG Design For T-Shirts.jpeg" width="147" height="103"><strong><em>TE OFRECEMOS VARIAS MARCAS DE LENTES </em></strong>
+      <h2 style="color: white;"></h2>
+</div>
+
+    <div class="container">
+        <div class="product">
+            <h2>GAFAS BOSS</h2>
+            <p>Precio: $199</p>
+            <div class="img-container"><img src="../Downloads/ce8c3828-576e-493d-b3f4-f9bbee13b23f.jpeg" width="560" height="560"></div>
+            <button class="products" data-name="GAFAS BOSS PARA DAMA" data-price="199">Añadir al Carrito</button>
+        </div>
+        <div class="product">
+            <h2>GAFAS VOGUE</h2>
+            <p>Precio: $200</p>
+            <div class="img-container">
+            <img src="../Downloads/87ad1869-3927-433e-ab5f-b1199985a4c7.jpeg" width="736" height="920"> </div>
+            <button class="add-to-cart" data-name="GAFAS VOGUE PARA CABALLERO" data-price="200">Añadir al Carrito</button>
+        </div>
+        <div class="product">
+            <h2>GAFAS DIOR</h2>
+            <p>Precio: $299</p>
+            <div class="img-container"><img src="../Downloads/0bc31756-f92a-4652-95d7-fdd289a8e5b5.jpeg" width="564" height="564"></div>
+            <button class="add-to-cart" data-name="GAFAS DIOR PARA DAMA" data-price="299">Añadir al Carrito</button>
+        </div>
+        <div class="product">
+            <h2>GAFAS LACOSTE</h2>
+            <p>Precio: $100</p>
+            <div class="img-container"><img src="../Downloads/Gafas de sol vintage para hombre con parte superior plana, gafas de sol grandes con protección UV.jpeg" width="736" height="980"></div>
+            <button class="add-to-cart" data-name="GAFAS DE CABALLERO LA COSTE" data-price="100">Añadir al Carrito</button>
+        </div>
+      <div class="product">
+            <h2>GAFAS FENDI</h2>
+            <p>Precio: $200</p>
+            <div class="img-container"><img src="../Downloads/5d2e0d7b-b568-4c28-96bc-3af2cd472668.jpeg" width="608" height="1080"></div>
+        <button class="add-to-cart" data-name="GAFAS LA FENDI" data-price="200">Añadir al Carrito</button>
+        </div>
+     
+        <div class="product">
+          <h2>RAY-BAN</h2>
+            <p>Precio: $125</p>
+            <div class="img-container"><img src="../Downloads/34deb878-09f4-4be4-8b84-07abbd4c53f9.jpeg" width="736" height="1309"></div>
+            <button class="add-to-cart" data-name="GAFAS RAY-BAN" Data-price="125">Añadir al Carrito</button>
+        </div>
+        <div class="product">
+            <h2>GAFAS TOUS</h2>
+            <p>Precio: $199</p>
+            <div class="img-container"><img src="../Downloads/6309db54-c65f-49de-9514-980d9f741c32.jpeg" width="736" height="980"></div>
+            <button class="add-to-cart" data-name="GAFAS TOUS " data-price="200">Añadir al Carrito</button>
+        </div>
+    </div>
+
+    <div id="cart">
+        <h2>Carrito</h2>
+        <img src="../Downloads/Iconos de Carrito Compras para descargar gratis.jpeg" width="93" height="55">
+        <ul id="cart-items"></ul>
+        <p>Total: $<span id="total">0</span></p>
+    </div>
+
+    <script>
+        let carrito = [];
+        let total = 0;
+
+        function agregarAlCarrito(producto, precio) {
+            carrito.push({ producto, precio });
+            total += precio;
+            actualizarCarrito();
+        }
+
+        function eliminarDelCarrito(index) {
+            const productoEliminado = carrito.splice(index, 1)[0];
+            total -= productoEliminado.precio;
+            actualizarCarrito();
+        }
+
+        function actualizarCarrito() {
+            const listaCarrito = document.getElementById('cart-items');
+            const totalElemento = document.getElementById('total');
+
+            listaCarrito.innerHTML = '';
+            carrito.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.textContent = `${item.producto} - $${item.precio}`;
+                const eliminarBtn = document.createElement('button');
+                eliminarBtn.textContent = 'Eliminar';
+                eliminarBtn.onclick = () => eliminarDelCarrito(index);
+                li.appendChild(eliminarBtn);
+                listaCarrito.appendChild(li);
+            });
+
+            totalElemento.textContent = total;
+        }
+
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', () => {
+                const name = button.getAttribute('data-name');
+                const price = parseFloat(button.getAttribute('data-price'));
+                agregarAlCarrito(name, price);
+            });
+        });
+    </script>
+</body>
+</html>
